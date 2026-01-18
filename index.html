@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DropFlow - Dropshipping Dashboard</title>
+    <meta name="description" content="Modern dropshipping management dashboard for tracking products, suppliers, and orders.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/>
+                        <line x1="7" y1="7" x2="7.01" y2="7"/>
+                    </svg>
+                </div>
+                <span class="logo-text">DropFlow</span>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-page="dashboard">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"/>
+                        <rect x="14" y="3" width="7" height="7"/>
+                        <rect x="14" y="14" width="7" height="7"/>
+                        <rect x="3" y="14" width="7" height="7"/>
+                    </svg>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-page="products">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                        <line x1="12" y1="22.08" x2="12" y2="12"/>
+                    </svg>
+                    <span>Products</span>
+                </a>
+                <a href="#" class="nav-item" data-page="suppliers">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                        <polyline points="9 22 9 12 15 12 15 22"/>
+                    </svg>
+                    <span>Suppliers</span>
+                </a>
+                <a href="#" class="nav-item" data-page="orders">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <polyline points="10 9 9 9 8 9"/>
+                    </svg>
+                    <span>Orders</span>
+                </a>
+                <a href="#" class="nav-item" data-page="calculator">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="4" y="2" width="16" height="20" rx="2"/>
+                        <line x1="8" y1="6" x2="16" y2="6"/>
+                        <line x1="8" y1="10" x2="8" y2="10.01"/>
+                        <line x1="12" y1="10" x2="12" y2="10.01"/>
+                        <line x1="16" y1="10" x2="16" y2="10.01"/>
+                        <line x1="8" y1="14" x2="8" y2="14.01"/>
+                        <line x1="12" y1="14" x2="12" y2="14.01"/>
+                        <line x1="16" y1="14" x2="16" y2="14.01"/>
+                        <line x1="8" y1="18" x2="8" y2="18.01"/>
+                        <line x1="12" y1="18" x2="16" y2="18"/>
+                    </svg>
+                    <span>Calculator</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="avatar">DS</div>
+                    <div class="user-info">
+                        <span class="user-name">Drop Shipper</span>
+                        <span class="user-role">Pro Account</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="page-title">
+                    <h1 id="pageTitle">Dashboard</h1>
+                    <p class="page-subtitle" id="pageSubtitle">Welcome back! Here's your business overview.</p>
+                </div>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                        <input type="text" id="globalSearch" placeholder="Search...">
+                    </div>
+                    <button class="btn-primary" id="primaryAction">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                        <span>Add New</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Dashboard Page -->
+            <section class="page active" id="dashboardPage">
+                <div class="stats-grid">
+                    <div class="stat-card gradient-purple">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="1" x2="12" y2="23"/>
+                                <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-label">Total Revenue</span>
+                            <span class="stat-value" id="totalRevenue">$0.00</span>
+                            <span class="stat-change positive">+0% from last month</span>
+                        </div>
+                    </div>
+                    <div class="stat-card gradient-blue">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-label">Total Products</span>
+                            <span class="stat-value" id="totalProducts">0</span>
+                            <span class="stat-change">In your catalog</span>
+                        </div>
+                    </div>
+                    <div class="stat-card gradient-green">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                                <polyline points="17 6 23 6 23 12"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-label">Net Profit</span>
+                            <span class="stat-value" id="totalProfit">$0.00</span>
+                            <span class="stat-change positive" id="profitMargin">0% margin</span>
+                        </div>
+                    </div>
+                    <div class="stat-card gradient-orange">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-label">Total Orders</span>
+                            <span class="stat-value" id="totalOrders">0</span>
+                            <span class="stat-change" id="pendingOrders">0 pending</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card recent-orders">
+                        <div class="card-header">
+                            <h3>Recent Orders</h3>
+                            <a href="#" class="view-all" data-page="orders">View All</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="orders-list" id="recentOrdersList">
+                                <div class="empty-state">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                                        <polyline points="14 2 14 8 20 8"/>
+                                    </svg>
+                                    <p>No orders yet</p>
+                                    <span>Orders will appear here</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card top-products">
+                        <div class="card-header">
+                            <h3>Top Products</h3>
+                            <a href="#" class="view-all" data-page="products">View All</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="products-list" id="topProductsList">
+                                <div class="empty-state">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+                                    </svg>
+                                    <p>No products yet</p>
+                                    <span>Add your first product</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Products Page -->
+            <section class="page" id="productsPage">
+                <div class="table-container">
+                    <table class="data-table" id="productsTable">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Cost Price</th>
+                                <th>Sell Price</th>
+                                <th>Profit</th>
+                                <th>Margin</th>
+                                <th>Supplier</th>
+                                <th>Stock</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                        </tbody>
+                    </table>
+                    <div class="empty-state table-empty" id="productsEmpty">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+                        </svg>
+                        <p>No products yet</p>
+                        <span>Click "Add New" to create your first product</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Suppliers Page -->
+            <section class="page" id="suppliersPage">
+                <div class="suppliers-grid" id="suppliersGrid">
+                </div>
+                <div class="empty-state" id="suppliersEmpty">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                        <polyline points="9 22 9 12 15 12 15 22"/>
+                    </svg>
+                    <p>No suppliers yet</p>
+                    <span>Click "Add New" to add your first supplier</span>
+                </div>
+            </section>
+
+            <!-- Orders Page -->
+            <section class="page" id="ordersPage">
+                <div class="orders-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="pending">Pending</button>
+                    <button class="filter-btn" data-filter="processing">Processing</button>
+                    <button class="filter-btn" data-filter="shipped">Shipped</button>
+                    <button class="filter-btn" data-filter="delivered">Delivered</button>
+                </div>
+                <div class="table-container">
+                    <table class="data-table" id="ordersTable">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Product</th>
+                                <th>Amount</th>
+                                <th>Profit</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody">
+                        </tbody>
+                    </table>
+                    <div class="empty-state table-empty" id="ordersEmpty">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                        </svg>
+                        <p>No orders yet</p>
+                        <span>Click "Add New" to create your first order</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Calculator Page -->
+            <section class="page" id="calculatorPage">
+                <div class="calculator-container">
+                    <div class="calc-card">
+                        <h3>Profit Calculator</h3>
+                        <div class="calc-inputs">
+                            <div class="input-group">
+                                <label for="calcCost">Cost Price ($)</label>
+                                <input type="number" id="calcCost" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                            <div class="input-group">
+                                <label for="calcSell">Selling Price ($)</label>
+                                <input type="number" id="calcSell" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                            <div class="input-group">
+                                <label for="calcShipping">Shipping Cost ($)</label>
+                                <input type="number" id="calcShipping" placeholder="0.00" step="0.01" min="0" value="0">
+                            </div>
+                            <div class="input-group">
+                                <label for="calcFees">Platform Fees (%)</label>
+                                <input type="number" id="calcFees" placeholder="0" step="0.1" min="0" max="100" value="0">
+                            </div>
+                        </div>
+                        <div class="calc-results">
+                            <div class="result-item">
+                                <span class="result-label">Gross Profit</span>
+                                <span class="result-value" id="grossProfit">$0.00</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Platform Fees</span>
+                                <span class="result-value negative" id="platformFees">-$0.00</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Shipping Cost</span>
+                                <span class="result-value negative" id="shippingCost">-$0.00</span>
+                            </div>
+                            <div class="result-item highlight">
+                                <span class="result-label">Net Profit</span>
+                                <span class="result-value" id="netProfit">$0.00</span>
+                            </div>
+                            <div class="result-item highlight">
+                                <span class="result-label">Profit Margin</span>
+                                <span class="result-value" id="calcMargin">0%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="calc-card markup-calc">
+                        <h3>Markup Calculator</h3>
+                        <div class="calc-inputs">
+                            <div class="input-group">
+                                <label for="markupCost">Cost Price ($)</label>
+                                <input type="number" id="markupCost" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                            <div class="input-group">
+                                <label for="desiredMargin">Desired Margin (%)</label>
+                                <input type="number" id="desiredMargin" placeholder="30" step="1" min="0" max="99" value="30">
+                            </div>
+                        </div>
+                        <div class="calc-results">
+                            <div class="result-item highlight">
+                                <span class="result-label">Suggested Price</span>
+                                <span class="result-value" id="suggestedPrice">$0.00</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Expected Profit</span>
+                                <span class="result-value" id="expectedProfit">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Product Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="productModalTitle">Add Product</h2>
+                <button class="modal-close" id="closeProductModal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <form id="productForm">
+                <input type="hidden" id="productId">
+                <div class="form-grid">
+                    <div class="input-group full-width">
+                        <label for="productName">Product Name *</label>
+                        <input type="text" id="productName" required placeholder="e.g., Wireless Earbuds">
+                    </div>
+                    <div class="input-group">
+                        <label for="productCost">Cost Price ($) *</label>
+                        <input type="number" id="productCost" required step="0.01" min="0" placeholder="0.00">
+                    </div>
+                    <div class="input-group">
+                        <label for="productPrice">Selling Price ($) *</label>
+                        <input type="number" id="productPrice" required step="0.01" min="0" placeholder="0.00">
+                    </div>
+                    <div class="input-group">
+                        <label for="productSupplier">Supplier</label>
+                        <select id="productSupplier">
+                            <option value="">Select Supplier</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="productStock">Stock Status</label>
+                        <select id="productStock">
+                            <option value="in_stock">In Stock</option>
+                            <option value="low_stock">Low Stock</option>
+                            <option value="out_of_stock">Out of Stock</option>
+                        </select>
+                    </div>
+                    <div class="input-group full-width">
+                        <label for="productDescription">Description</label>
+                        <textarea id="productDescription" rows="3" placeholder="Product description..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="cancelProduct">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Supplier Modal -->
+    <div class="modal" id="supplierModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="supplierModalTitle">Add Supplier</h2>
+                <button class="modal-close" id="closeSupplierModal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <form id="supplierForm">
+                <input type="hidden" id="supplierId">
+                <div class="form-grid">
+                    <div class="input-group full-width">
+                        <label for="supplierName">Supplier Name *</label>
+                        <input type="text" id="supplierName" required placeholder="e.g., AliExpress Store">
+                    </div>
+                    <div class="input-group">
+                        <label for="supplierContact">Contact Email</label>
+                        <input type="email" id="supplierContact" placeholder="contact@supplier.com">
+                    </div>
+                    <div class="input-group">
+                        <label for="supplierPhone">Phone</label>
+                        <input type="tel" id="supplierPhone" placeholder="+1 234 567 8900">
+                    </div>
+                    <div class="input-group">
+                        <label for="supplierRating">Rating</label>
+                        <select id="supplierRating">
+                            <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+                            <option value="4">⭐⭐⭐⭐ Good</option>
+                            <option value="3">⭐⭐⭐ Average</option>
+                            <option value="2">⭐⭐ Below Average</option>
+                            <option value="1">⭐ Poor</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="supplierShipping">Avg. Shipping (days)</label>
+                        <input type="number" id="supplierShipping" min="1" max="60" placeholder="7">
+                    </div>
+                    <div class="input-group full-width">
+                        <label for="supplierNotes">Notes</label>
+                        <textarea id="supplierNotes" rows="3" placeholder="Additional notes about this supplier..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="cancelSupplier">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Supplier</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Order Modal -->
+    <div class="modal" id="orderModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="orderModalTitle">Add Order</h2>
+                <button class="modal-close" id="closeOrderModal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <form id="orderForm">
+                <input type="hidden" id="orderId">
+                <div class="form-grid">
+                    <div class="input-group full-width">
+                        <label for="orderCustomer">Customer Name *</label>
+                        <input type="text" id="orderCustomer" required placeholder="John Doe">
+                    </div>
+                    <div class="input-group">
+                        <label for="orderEmail">Customer Email</label>
+                        <input type="email" id="orderEmail" placeholder="customer@email.com">
+                    </div>
+                    <div class="input-group">
+                        <label for="orderProduct">Product *</label>
+                        <select id="orderProduct" required>
+                            <option value="">Select Product</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="orderQuantity">Quantity</label>
+                        <input type="number" id="orderQuantity" min="1" value="1" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="orderStatus">Status</label>
+                        <select id="orderStatus">
+                            <option value="pending">Pending</option>
+                            <option value="processing">Processing</option>
+                            <option value="shipped">Shipped</option>
+                            <option value="delivered">Delivered</option>
+                        </select>
+                    </div>
+                    <div class="input-group full-width">
+                        <label for="orderAddress">Shipping Address</label>
+                        <textarea id="orderAddress" rows="2" placeholder="123 Main St, City, Country"></textarea>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="cancelOrder">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Order</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal" id="deleteModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <h2>Confirm Delete</h2>
+                <button class="modal-close" id="closeDeleteModal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="deleteMessage">Are you sure you want to delete this item?</p>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn-secondary" id="cancelDelete">Cancel</button>
+                <button type="button" class="btn-danger" id="confirmDelete">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
